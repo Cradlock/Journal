@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link href="{% static 'favicon.ico' %}" rel="icon">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+
+   <header>
+       <div class="header_links">
+           <a href="{% url 'rating' %}"><button>Рейтинг</button></a>
+           <a href="{% url 'index' %}"><button>Главная страница</button></a>
+       </div>
+
+
+       <div class="header_search">
+           <form method="post" action="{% url 'index' %}">
+               {% csrf_token %}
+               <input name="data" placeholder="Напишите фамилию,имя или номер">
+               <button type="submit">Search</button>
+           </form>
+       </div>
+
+
+       {% if isLogin %}
+       {% else %}
+       <div class="header_login">
+           {% if user.is_authenticated and user.is_staff %}
+              <a href="{% url 'logout' %}"><button>Logout</button></a>
+           {% else %}
+              <a href="{% url 'login' %}"><button>Login</button></a>
+           {% endif %}
+       </div>
+       {% endif %}
+
+       <div class="mini_header">
+           <button class="dropdown_button">Меню</button>
+           <div class="dropdown_content">
+            <a href="{% url 'index' %}"><button>Главная страница</button></a>
+            <a href="{% url 'rating' %}"><button>Рейтинг</button></a>
+
+           {% if user.is_authenticated and user.is_staff %}
+            <a href="{% url 'logout' %}"><button>Logout</button></a>
+           {% else %}
+            <a href="{% url 'login' %}"><button>Login</button></a>
+           {% endif %}
+           </div>
+       </div>
+   </header>
+
+   {% block content %}
+
+   {% endblock %}
+
+</body>
+</html>

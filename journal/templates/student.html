@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="self_content">
+    <div class="self_info">
+        <img src="{% if student.img %} {{student.img.url}} {% else %} {% endif %}" alt="Фото отсутствует">
+        <div class="self_info_text">
+            <p><span>Имя</span> : {{student.name}}</p>
+            <p><span>Фамилия</span> : {{student.surname}}</p>
+            <p><span>Номер</span> : {{student.number}}</p>
+            <p><span>Балы</span> : {{student.point}}</p>
+        </div>
+    </div>
+    {% if user.is_authenticated and user.is_staff %}
+    <div class="grade_block">
+        <form method="post">
+            {% csrf_token %}
+            <input type="number" name="grade">
+            <button type="submit">Grade</button>
+        </form>
+    </div>
+    {% else %}
+    {% endif %}
+
+    <div class="Truancies">
+        <span>Прогулы({{count}})</span>
+        {% for tr in truiances %}
+        <div class="truancie">
+            <span>
+                {{tr.date}}
+            </span>
+            <span>
+                {% if tr.cause %}
+                С причиной
+                {% else %}
+                Без причины
+                {% endif %}
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+

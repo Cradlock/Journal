@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="login_form">
+    <form method="post">
+        {% csrf_token %}
+        <span>Авторизация</span>
+        <input name="username" placeholder="Введите Имя">
+        <input name="password" placeholder="Введите пароль" type="password">
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+{% endblock %}
