@@ -12,19 +12,22 @@
 
     <form method="get">
         <input type="hidden" value="true" name="truancies">
-        <button type="submit">По прогулам</button>
+        <button type="submit">По прогулам(без причины)</button>
     </form>
 </div>
 
 <div class="sort_students">
-     {% for student in students %}
+    {% for student in students %}
      <div class="student_box">
-        <img src="{% if student.img %} {{student.img.url}} {% else %} {% endif %}" alt="Фото отсутвует">
-        <div class="student_text">
+         <div class="ret_number">
+             {{ student.place_rating }}
+         </div>
+         <img src="{% if student.img %} {{student.img.url}} {% else %} {% endif %}" alt="Фото отсутвует">
+
+         <div class="student_text">
             <span class="name">Имя и фамилия :  {{student.name}} {{student.surname}}</span>
             <span class="points">Балы :  {{student.point}}</span>
             <span class="points">Прогулы :  {{student.truancy_count}}</span>
-            <a href="{% url 'student' student.id %}"><button class="student_read_more">Подробнее</button></a>
         </div>
     </div>
      {% endfor %}

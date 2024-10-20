@@ -13,8 +13,7 @@ def index(request):
         filtered_students = students.none()
 
         try:
-            student_id = int(search_data)
-            filtered_students = students.filter(id=student_id)
+            filtered_students = students.filter(number=search_data)
         except ValueError:
             pass
 
@@ -43,10 +42,15 @@ def rating(request):
 
 
         if point_f:
-            students_sort = Student.objects.all().order_by("-point")
-
+            students = Student.objects.all().order_by("point")
+            for i,item in enumerate(students):
+                item.place_rating = i+1
+            students_sort = students
         elif truancies_f:
-            students_sort = Student.sorted_by_truancy_count()
+            students = Student.sorted_by_truancy_count()
+            for i, item in enumerate(students):
+                item.place_rating = i + 1
+            students_sort = students
 
     context = {
         "title":"Рейтинг",
@@ -63,9 +67,11 @@ def student(request,id):
 
     if request.method == 'POST' and request.user.is_authenticated and request.user.is_staff:
         grade = request.POST.get('grade')
-        people.point += int(grade)
-        people.save()
-
+        try:
+           people.point += int(grade)
+           people.save()
+        except:
+            pass
 
 
 

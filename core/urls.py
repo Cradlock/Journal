@@ -2,9 +2,10 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 from django.conf import settings
 from django.conf.urls.static import static
-from journal.views import page404
+from journal.views import page404,index
 
 urlpatterns = [
+    path('',index),
     path('admin/', admin.site.urls),
     path('journal/',include("journal.urls"))
 ]

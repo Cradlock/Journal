@@ -9,7 +9,7 @@ class Student(models.Model):
     surname = models.CharField(max_length=45,verbose_name="Фамилия студента")
     point = models.IntegerField(verbose_name="Балы",editable=False,blank=True,null=True,default=0)
     number = models.CharField(max_length=25,blank=False,verbose_name="Номер студента")
-
+    place_rating = models.PositiveIntegerField(default=0,blank=True,editable=True)
     def __str__(self):
         return self.name
 
@@ -21,7 +21,8 @@ class Student(models.Model):
         ).order_by('-truancy_count')
 
     def truancy_count(self):
-        return self.sorted_by_truancy_count().count()
+
+        return self.truancie_set.count()
 
     class Meta:
         verbose_name_plural = "Студенты"

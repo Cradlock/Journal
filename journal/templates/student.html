@@ -31,17 +31,21 @@
             <span>
                 {{tr.date}}
             </span>
-            <span>
                 {% if tr.cause %}
-                С причиной
+                <span class="cause_button">С причиной</span>
+                <div class="cause_tr">
+                   {{tr.cause}}
+                </div>
                 {% else %}
-                Без причины
+                <span class="cause_button">Без причины</span>
                 {% endif %}
             </span>
         </div>
         {% endfor %}
     </div>
 </div>
+<script>
 
+</script>
 {% endblock %}
 
