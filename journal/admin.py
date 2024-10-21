@@ -11,6 +11,7 @@ class TruancyAdmin(admin.ModelAdmin):
     list_filter = ("date",)
 
 
+
+
 admin.site.register(Student,StudentAdmin)
 admin.site.register(Truancie,TruancyAdmin)
-

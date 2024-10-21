@@ -430,6 +430,7 @@ p,span{
 .filters{
     width: 90%;
     display: flex;
+    flex-wrap: wrap;
     background: rgba(40,40,50);
     padding: 15px;
     justify-content: space-evenly;
@@ -443,6 +444,7 @@ p,span{
     font-size: 15px;
     padding: 10px;
     font-family: Lato, sans-serif;
+    border-top: 1px solid white;
 }
 
 .filters button:hover{
@@ -463,11 +465,17 @@ p,span{
     display: none;
     width: 80%;
     word-wrap: break-word;
+    text-align: center;
+    border-top: 2px solid white;
 }
 
 .cause_button{
     margin-left: 10px;
-    cursor: pointer ;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: white;
+
 }
 
 .cause_button:hover + .cause_tr{

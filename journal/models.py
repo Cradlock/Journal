@@ -9,7 +9,7 @@ class Student(models.Model):
     surname = models.CharField(max_length=45,verbose_name="Фамилия студента")
     point = models.IntegerField(verbose_name="Балы",editable=False,blank=True,null=True,default=0)
     number = models.CharField(max_length=25,blank=False,verbose_name="Номер студента")
-    place_rating = models.PositiveIntegerField(default=0,blank=True,editable=True)
+    place_rating = models.PositiveIntegerField(default=0,blank=True,editable=False)
     def __str__(self):
         return self.name
 
@@ -27,6 +27,8 @@ class Student(models.Model):
     class Meta:
         verbose_name_plural = "Студенты"
         verbose_name = "Студент"
+
+
 
 class Truancie(models.Model):
     student = models.ForeignKey(Student,on_delete=models.CASCADE,verbose_name="Студент")

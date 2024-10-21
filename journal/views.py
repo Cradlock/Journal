@@ -10,6 +10,7 @@ def index(request):
 
     if request.method == 'POST':
         search_data = request.POST.get('data', '').strip()
+
         filtered_students = students.none()
 
         try:
@@ -29,7 +30,7 @@ def index(request):
 
     context = {
         "title":"Главная страница",
-        "students":students
+        "students":students,
     }
     return render(request,"index.html",context)
 
@@ -38,7 +39,9 @@ def rating(request):
     students_sort = None
     if request.method == "GET":
         point_f = request.GET.get("points")
-        truancies_f = request.GET.get("truancies")
+        truancies_f = request.GET.get("truancies_not_cause")
+        truancies_c = request.GET.get("truancies_cause")
+
 
 
         if point_f:
@@ -48,6 +51,11 @@ def rating(request):
             students_sort = students
         elif truancies_f:
             students = Student.sorted_by_truancy_count()
+            for i, item in enumerate(students):
+                item.place_rating = i + 1
+            students_sort = students
+        elif truancies_c:
+            students = Student.objects.annotate(truancies=Count("truancie")).order_by("truancie")
             for i, item in enumerate(students):
                 item.place_rating = i + 1
             students_sort = students

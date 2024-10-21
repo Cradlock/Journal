@@ -11,8 +11,13 @@
     </form>
 
     <form method="get">
-        <input type="hidden" value="true" name="truancies">
+        <input type="hidden" value="true" name="truancies_not_cause">
         <button type="submit">По прогулам(без причины)</button>
+    </form>
+
+    <form method="get">
+        <input type="hidden" value="true" name="truancies_cause">
+        <button type="submit">По прогулам(с причиной)</button>
     </form>
 </div>
 
@@ -28,6 +33,7 @@
             <span class="name">Имя и фамилия :  {{student.name}} {{student.surname}}</span>
             <span class="points">Балы :  {{student.point}}</span>
             <span class="points">Прогулы :  {{student.truancy_count}}</span>
+             <a href="{% url 'student' student.id %}"><button class="student_read_more">Подробнее</button></a>
         </div>
     </div>
      {% endfor %}
