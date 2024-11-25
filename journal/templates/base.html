@@ -15,6 +15,7 @@
        <div class="header_links">
            <a href="{% url 'rating' %}"><button>Рейтинг</button></a>
            <a href="{% url 'index' %}"><button>Главная страница</button></a>
+           <a href="{% url 'rules' %}"><button>Правила</button></a>
        </div>
 
 
@@ -44,6 +45,7 @@
            <div class="dropdown_content">
             <a href="{% url 'index' %}"><button>Главная страница</button></a>
             <a href="{% url 'rating' %}"><button>Рейтинг</button></a>
+            <a href="{% url 'rules' %}"><button>Правила</button></a>
 
            {% if user.is_authenticated and user.is_staff %}
                <a href="{% url 'logout' %}"><button>Logout</button></a>

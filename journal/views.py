@@ -91,7 +91,12 @@ def student(request,id):
     }
     return render(request,"student.html",context)
 
-
+def rules(request):
+    rules_list = Rules.objects.all().last()
+    context = {
+       "data":rules_list
+    }
+    return render(request,"rules.html",context=context)
 
 def page404(request,**kwargs):
     context = {

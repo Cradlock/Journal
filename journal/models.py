@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Count, Q
-
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
 
 
 class Student(models.Model):
@@ -41,3 +42,26 @@ class Truancie(models.Model):
     class Meta:
         verbose_name_plural = "Прогулы студентов"
 
+
+
+
+class Rules(models.Model):
+    date = models.DateField(blank=False,verbose_name="Дата создания")
+    version = models.PositiveIntegerField(blank=False,default=1)
+    rules_list = models.JSONField(verbose_name="Свод правил")
+    def __str__(self):
+        return f"V {self.version}."
+
+    class Meta:
+        verbose_name_plural = "Правила сайта"
+
+@receiver(pre_save, sender=Rules)
+def set_version(sender,instance,**kwargs):
+    if instance.pk is None:
+        last_obj = Rules.objects.all().order_by('-version').first()
+        if last_obj:
+            instance.version = last_obj.version + 1
+        else:
+            instance.version = 1
+
+    

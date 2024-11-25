@@ -8,5 +8,6 @@ urlpatterns = [
     path("student/<int:id>",student,name="student"),
     path("login/",loginF,name="login"),
     path("logout/", logoutF, name="logout"),
+    path("rules/", rules, name="rules"),
 
 ]

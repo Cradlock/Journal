@@ -485,3 +485,32 @@ p,span{
 .cause_tr:hover{
     display: block;
 }
+
+
+
+
+
+
+
+.main_block_rules{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.in_block_rules{
+    width: 100%;
+    max-width: 700px;
+    background: #51b6c0;
+}
+
+.in_block_rules p{
+    margin: 10px;
+    color: white;
+    font-family: Lato, sans-serif;
+}
+
+
+
+
+

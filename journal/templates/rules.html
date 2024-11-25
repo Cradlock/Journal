@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="main_block_rules">
+   <div class="in_block_rules">
+       {% for i in data.rules_list %}
+           <p>{{i}}</p>
+       {% endfor %}
+   </div>
+</div>
+
+{% endblock %}
